@@ -3,130 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shafa | Developer & Creator</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+    <title>Shafa | Developer & Explorer</title>
     <link rel="stylesheet" href="style.css">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
 <body>
 
-    <div id="preloader">
+    <div id="loader">
         <div class="loader-content">
-            <i class="fas fa-laptop-code main-icon"></i>
-            <h1 class="loader-text">Welcome to<br>Shafaur's Profile</h1>
-            <div class="loader-icons">
-                <i class="fab fa-github"></i>
-                <i class="fas fa-code"></i>
-                <i class="fas fa-user"></i>
-            </div>
-            <p class="loader-credit">Designed by Shafa</p>
+            <h1 class="loader-text">Shafa<span class="dot">.</span>Dev</h1>
+            <div class="loader-line"></div>
         </div>
     </div>
 
-    <nav class="navbar hidden-element delay-1">
-        <div class="logo">Shafa.Dart</div>
+    <div id="video-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeVideo()">&times;</span>
+            <div class="video-container">
+                <iframe id="youtube-frame" src="" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <div class="logo">Shafa<span class="highlight">.Dart</span></div>
         <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#app">My App</a></li>
-            <li><a href="#gallery">Photography</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#work">Projects</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#gallery">Nature</a></li>
+            <li><a href="#contact" class="btn-nav">Contact</a></li>
         </ul>
+        <div class="menu-icon" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>
     </nav>
 
+    <div class="mobile-menu" id="mobileMenu">
+        <span class="close-menu" onclick="toggleMenu()">&times;</span>
+        <a href="#home" onclick="toggleMenu()">Home</a>
+        <a href="#work" onclick="toggleMenu()">Projects</a>
+        <a href="#about" onclick="toggleMenu()">About</a>
+        <a href="#gallery" onclick="toggleMenu()">Nature</a>
+        <a href="#contact" onclick="toggleMenu()">Contact</a>
+    </div>
+
     <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="badge hidden-element delay-2">Available for freelance work</div>
-            
-            <h1 class="hidden-element delay-3">Hi, I'm Shafaur</h1>
-            
-            <h2 class="typing-container hidden-element delay-4">
-                I am a <span class="typing-text"></span>
-            </h2>
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
 
-            <p class="bio-text hidden-element delay-5">
-                I create beautiful, functional, and user-centered digital experiences. Bringing ideas to life through clean code and thoughtful design.
-            </p>
-
-            <div class="location-info hidden-element delay-5">
-                <i class="fas fa-map-marker-alt"></i> Kushtia, Bangladesh
-            </div>
-
-            <div class="buttons hidden-element delay-6">
-                <a href="https://wa.me/8801861838825?text=Hello%20apnar%20sathe%20kotha%20bolte%20chai.." target="_blank" class="btn primary-btn">
-                    Contact Me <i class="fab fa-whatsapp"></i>
-                </a>
-                <a href="#app" class="btn secondary-btn">
-                    My Projects <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-
-            <div class="social-links hidden-element delay-6">
-                <span>Follow me:</span>
-                <a href="https://github.com/shafadart" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-            </div>
-        </div>
-
-        <div class="hero-img-container hidden-element delay-6">
-            <img src="assets/profile.png" alt="Shafa" class="hero-img">
-            <div class="floating-card card-1">
-                <i class="fab fa-flutter"></i> Flutter
-            </div>
-            <div class="floating-card card-2">
-                <i class="fas fa-camera-retro"></i> Photo
-            </div>
-        </div>
-    </section>
-
-    <section id="app" class="app-section">
-        <div class="section-title">
-            <h2>Featured Project</h2>
-            <p>The Future of Secure Messaging</p>
-        </div>
-        <div class="app-showcase">
-            <div class="app-mockup">
-                <img src="assets/app_mockup.png" alt="Idiots Messenger">
-            </div>
-            <div class="app-details">
-                <h1>Idiots Messenger <span>v1.0</span></h1>
-                <p>A private, secure, and fun messenger built for the inner circle. Features include voice changer, cloud gallery with PIN lock, and AI integration.</p>
-                <div class="features-grid">
-                    <div class="feature-card">🔒 Secure PIN</div>
-                    <div class="feature-card">☁️ Cloud Album</div>
+        <div class="hero-container">
+            <div class="hero-text reveal-left">
+                <span class="greeting"><i class="fa-solid fa-leaf"></i> Assalamu Alaikum, I'm</span>
+                <h1 class="full-name">Md. Shafaur Rahman</h2>
+                <h3 class="typewriter-container">I am a <span class="typing"></span></h3>
+                <p class="bio">
+                    Bridging the gap between <strong>Biological Science</strong> and <strong>Modern Technology</strong>. 
+                    Creating seamless Flutter apps while exploring the silence of nature.
+                </p>
+                <div class="cta-group">
+                    <a href="#work" class="btn primary-btn">View Projects</a>
+                    <a href="#contact" class="btn outline-btn">Hire Me</a>
                 </div>
-                <a href="assets/app-release.apk" download class="btn download-btn">Download APK <i class="fas fa-download"></i></a>
+                <div class="socials">
+                    <a href="https://github.com/shafadart" target="_blank"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://wa.me/8801861838825?text=Hello%20shafa..." target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="hero-image reveal-right">
+                <div class="img-box">
+                    <img src="assets/shafa.png" alt="Shafa Profile">
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="gallery" class="gallery-section">
-        <div class="section-title"><h2>Captured Moments</h2><p>Through my lens</p></div>
-        <div class="photo-grid">
-            <div class="photo-card" style="background-image: url('https://source.unsplash.com/random/400x400?nature')"></div>
-            <div class="photo-card" style="background-image: url('https://source.unsplash.com/random/400x400?city')"></div>
-            <div class="photo-card" style="background-image: url('https://source.unsplash.com/random/400x400?tech')"></div>
+    <section id="work" class="section bg-light">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="tag">Portfolio</span>
+                <h2>Featured Projects</h2>
+            </div>
+
+            <div class="projects-list">
+                
+                <div class="compact-card reveal-up">
+                    <div class="compact-visual">
+                        <img src="assets/adopt_pet.png" alt="Adopt a Pet" class="phone-mockup">
+                    </div>
+                    <div class="compact-content">
+                        <span class="p-tag">App Development</span>
+                        <h3>Adopt a Pet 🐾</h3>
+                        <p>
+                            A complete social ecosystem for pet lovers. This app features adoption listings, lost & found alerts, real-time chat, and Google Maps integration for tracking pets.
+                        </p>
+                        <div class="tech-row">
+                            <span><i class="fa-brands fa-flutter"></i> Flutter</span>
+                            <span><i class="fa-solid fa-fire"></i> Firebase</span>
+                            <span><i class="fa-solid fa-map-location-dot"></i> Maps</span>
+                        </div>
+                        <div class="compact-actions">
+                            <a href="assets/app-release.apk" class="btn-compact primary" download>
+                                <i class="fa-brands fa-android"></i> Download APK
+                            </a>
+                            <button onclick="openVideo('dQw4w9WgXcQ')" class="btn-compact outline">
+                                <i class="fa-solid fa-play"></i> Watch Demo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="compact-card reverse reveal-up">
+                    <div class="compact-visual visual-orange">
+                        <img src="assets/idiots_messenger.png" alt="Idiots Messenger" class="phone-mockup">
+                    </div>
+                    <div class="compact-content">
+                        <span class="p-tag private-tag">Private Project</span>
+                        <h3>Idiots Messenger 💬</h3>
+                        <p>
+                            An exclusive, encrypted messaging app built for my inner circle. It includes custom stickers, inside jokes, private servers, and a unique UI tailored for fun.
+                        </p>
+                        <div class="tech-row">
+                            <span><i class="fa-brands fa-flutter"></i> Flutter</span>
+                            <span><i class="fa-solid fa-shield-halved"></i> Encrypted</span>
+                            <span><i class="fa-solid fa-server"></i> Dart</span>
+                        </div>
+                        <div class="compact-actions">
+                            <button onclick="openVideo('VIDEO_ID_HERE')" class="btn-compact outline full">
+                                <i class="fa-solid fa-film"></i> Watch Our Story
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </section>
 
-    <footer id="contact">
-        <h2>Let's Connect</h2>
-        <p>Currently available for new projects.</p>
-        <div class="contact-links">
-            <a href="https://wa.me/8801861838825?text=Hello%20Shafa" target="_blank" class="contact-box">
-                <i class="fab fa-whatsapp"></i> WhatsApp
-            </a>
-            <a href="https://github.com/shafadart" target="_blank" class="contact-box">
-                <i class="fab fa-github"></i> GitHub
-            </a>
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="tag">My Journey</span>
+                <h2>Who is ShafaUr?</h2>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-img reveal-left">
+                    <img src="assets/shafa_dart.png" alt="Shafa Coding">
+                </div>
+                <div class="about-text reveal-right">
+                    <p>Assalamu Alaikum,</p>
+                    <p>My name is <strong>Shafaur</strong>. I am a student from Bangladesh, currently studying in the Department of Zoology at Kushtia Government College, where I am in my second year. Alongside my academic journey, I am constantly driven by a deep desire to understand myself better, develop my skills, and do something meaningful with my life.</p>
+                    
+                    <p>My life is not limited to academic studies alone. I have a strong passion and deep interest in <strong>programming</strong> and various technical fields. In many ways, these subjects truly excite me. Learning new things, understanding the logic behind technology, and building myself in the digital world genuinely motivate me. I strongly believe that in today’s era, technical skills do not only prepare a person for a career, but also make their thinking more independent and structured.</p>
+                    
+                    <p>At the same time, I am a sensitive and reflective person. I have a deep love for <strong>nature</strong>, and I enjoy capturing its beauty whether it is the sky, the moon, the play of light and shadow, or a quiet, silent moment. Nature brings me peace, teaches me how to observe deeply, and gives me a break from the noise within. Through this love, I have learned to feel beauty not only with my eyes, but also with my heart.</p>
+                    
+                    <p>Writing is another important medium through which I express myself. I try to learn something from every mistake, struggle, pain, and realization in my life, and I want those lessons to be useful for others as well. Especially for those who feel lost, broken, or alone in their lives I hope my words can offer even a small sense of comfort and courage.</p>
+                    
+                    <p>A significant part of my life is spiritual awareness. I want every action of mine to be guided by good intentions, and I strive to live in a way that pleases Allah. During difficult times, this belief gives me strength and stability. The verse that I hold closest to my heart during hardship is: <strong><em>“Indeed, with hardship comes ease.”</em></strong></p>
+                    
+                    <p>When it comes to the future, I am realistic yet hopeful. I understand that nothing meaningful is achieved overnight. That is why I choose to move forward step by step learning continuously, building my skills, and creating my own path. Becoming financially independent, establishing my own identity, and contributing positively to my family and society are the goals that keep me moving forward.</p>
+                    
+                    <p>In the end, I see myself as a simple human being someone who wants to learn, rise after falling, and make an honest effort to be a good person. My journey is still ongoing, but I firmly believe that with sincere intention and perseverance, the path eventually finds its destination.</p>
+                </div>
+            </div>
         </div>
-        <div class="copyright">© 2025 Shafaur Rahman. Kushtia, Bangladesh.</div>
-    </footer>
+    </section>
 
-    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
-    <script src="script.js"></script>
+    <section id="gallery" class="section bg-light">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="tag">Photography</span>
+                <h2>Nature's Canvas</h2>
+            </div>
+
+            <div class="gallery-grid reveal-up">
+                <div class="g-item"><img src="assets/ratar_gul_forest.jpg" alt="Nature"></div>
+                <div class="g-item"><img src="assets/jaflong_pahar.jpg" alt="Nature"></div>
+                <div class="g-item"><img src="assets/lake.jpg" alt="Nature"></div>
+                <div class="g-item"><img src="assets/jaflong_waterfal.jpg" alt="Nature"></div>
+                <div class="g-item"><img src="assets/ful_bagan.jpg" alt="Nature"></div>
+                <div class="g-item"><img src="assets/zero_point.jpg" alt="Nature"></div>
+                <div class="g-item"><img src="assets/unique_ful.jpg" alt="Nature"></div>
+                <div class="g-item"><img src="assets/samne_bharot.jpg" alt="Nature"></div>
+                <div class="g-item"><img src="assets/ratar_gul01.jpg" alt="Nature" onerror="this.style.display='none'"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section footer-section">
+        <div class="container reveal-up">
+            <div class="contact-box">
+                <h2>Let's Create Something Beautiful</h2>
+                <p>Have an idea or just want to say hi? My inbox is always open.</p>
+                
+                <div class="contact-links">
+                    <a href="mailto:shafaur269@gmail.com" class="contact-pill"><i class="fa-solid fa-envelope"></i> Email Me</a>
+                    <a href="https://wa.me/8801861838825?text=Hello%20shafa..." target="_blank" class="contact-pill"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; 2026 Md. Shafaur Rahman. All rights reserved.</p>
+                    <div class="footer-socials">
+                        <a href="https://github.com/shafadart" target="_blank"><i class="fa-brands fa-github"></i></a>
+                        <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="main.js"></script>
 </body>
 </html>
