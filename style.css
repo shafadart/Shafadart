@@ -209,3 +209,67 @@ body { font-family: var(--font-body); background-color: var(--white); color: var
     .menu-icon { display: block; }
     .footer-bottom { flex-direction: column; gap: 15px; }
 }
+
+/* --- Responsive Mobile Fix --- */
+@media (max-width: 900px) {
+    
+    /* Hero Section Fixes */
+    .hero-container { 
+        flex-direction: column-reverse; 
+        text-align: center; 
+        gap: 30px;
+    }
+    .hero-text { margin-top: 20px; }
+    .hero-image { justify-content: center; }
+    .img-box { width: 280px; height: 280px; }
+    
+    .full-name { 
+        font-size: 2rem; 
+        white-space: normal; /* নাম ভেঙে ২ লাইনে হলে সমস্যা নেই */
+        line-height: 1.2;
+    } 
+    
+    .cta-group, .socials { justify-content: center; }
+    
+    /* 🔥 PROJECT CARD FIX (Most Important) */
+    .projects-list { gap: 40px; }
+
+    .compact-card, .compact-card.reverse { 
+        flex-direction: column !important; /* ছবি ও লেখা নিচে নিচে */
+        height: auto !important; 
+        min-height: auto !important;
+    }
+
+    /* ছবির সেকশন */
+    .compact-visual { 
+        width: 100% !important; 
+        height: 250px !important; /* মোবাইলে ছবির হাইট ফিক্সড */
+        flex: none;
+    }
+
+    .phone-mockup {
+        height: 90% !important; /* ছবির সাইজ ঠিক রাখা */
+        width: auto !important;
+        transform: none !important; /* হোভার ইফেক্ট বন্ধ */
+    }
+
+    /* কন্টেন্ট সেকশন */
+    .compact-content { 
+        padding: 30px 25px !important; 
+        width: 100% !important;
+        text-align: center; /* টেক্সট সেন্টারে */
+    }
+
+    .compact-content h3 { font-size: 1.8rem; }
+    .tech-row { justify-content: center; } /* টেকনোলজি ট্যাগ সেন্টারে */
+    .compact-actions { justify-content: center; } /* বাটন সেন্টারে */
+
+    /* Other Sections */
+    .about-content { flex-direction: column; }
+    .gallery-grid { column-count: 1; } /* গ্যালারি এক লাইনে */
+    
+    /* Menu & Footer */
+    .nav-links, .menu-icon { display: none; }
+    .menu-icon { display: block; }
+    .footer-bottom { flex-direction: column; gap: 15px; }
+}
