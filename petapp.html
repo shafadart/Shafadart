@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adopt a Pet - Find Your Perfect Companion | ShafaDart</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+    html {
+    scroll-behavior: smooth; /* পেজ স্মুথলি স্ক্রল করার জন্য */
+    }
+    /* --- ১. বেসিক ভেরিয়েবল ও রিসেট --- */
+    :root {
+        --primary-color: #FF6B35; /* অরেঞ্জ কালার */
+        --text-dark: #333333;
+        --text-light: #666666;
+        --bg-white: #ffffff;
+        --bg-off-white: #f8f9fa;
+        --card-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-white);
+        color: var(--text-dark);
+        line-height: 1.6;
+    }
+
+    /* --- ২. লেআউট কন্টেইনার --- */
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* --- ৩. হিরো সেকশন (টাইটেল এরিয়া) --- */
+    .hero {
+        text-align: center;
+        padding: 80px 20px 40px;
+        background: linear-gradient(to bottom, #fff, var(--bg-off-white));
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 15px;
+        font-weight: 700;
+    }
+    .hero h1 span { color: var(--primary-color); }
+    
+    .hero p.subtitle {
+        font-size: 1.25rem;
+        color: var(--text-light);
+        max-width: 700px;
+        margin: 0 auto 30px;
+    }
+    
+    .hero-btn {
+        display: inline-block;
+        background-color: var(--primary-color);
+        color: white;
+        padding: 15px 40px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+        transition: transform 0.3s ease;
+    }
+    .hero-btn:hover { transform: translateY(-3px); }
+
+    /* --- ৪. ইম্পর্টেন্স নোট সেকশন --- */
+    .importance-note {
+        text-align: center;
+        padding: 40px 20px;
+        background-color: #fff0e6;
+        border-radius: 20px;
+        margin: 40px auto;
+        max-width: 800px;
+        border-left: 5px solid var(--primary-color);
+    }
+    .importance-note h3 { margin-top: 0; color: var(--primary-color); }
+
+    /* --- ৫. গ্রিড এবং কার্ড ডিজাইন --- */
+    .app-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        gap: 40px;
+        padding: 60px 0;
+    }
+
+    .feature-card {
+        background: var(--bg-white);
+        border-radius: 30px;
+        padding: 30px;
+        box-shadow: var(--card-shadow);
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        transition: transform 0.3s ease;
+        border: 1px solid #eee;
+    }
+    .feature-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--primary-color);
+    }
+
+    /* --- ৬. সাধারণ ফোন মকআপ ডিজাইন (সিঙ্গেল ফোন) --- */
+    .phone-mockup {
+        flex: 0 0 200px; /* ফোনের ফিক্সড সাইজ */
+        height: auto;
+        border-radius: 25px;
+        border: 8px solid #eee; /* ফোনের বর্ডার */
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+        background: white;
+    }
+    .phone-mockup img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    /* --- ৭. টেক্সট স্টাইল --- */
+    .card-content { flex: 1; }
+    .card-content h2 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        color: var(--text-dark);
+    }
+    .card-content p {
+        color: var(--text-light);
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+    .card-btn {
+        font-size: 0.9rem;
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+    }
+    .card-btn:hover { text-decoration: underline; }
+
+    /* --- ৮. স্পেশাল "Coming Soon" কার্ড --- */
+    .coming-soon-card {
+        background: linear-gradient(135deg, var(--primary-color), #ff9f43);
+        color: white;
+    }
+    .coming-soon-card h2, .coming-soon-card p, .coming-soon-card .card-btn {
+        color: white;
+    }
+    .coming-soon-card .phone-mockup { border-color: rgba(255,255,255,0.3); }
+
+    /* --- Special 3-Phone Card (Vertical Layout) --- */
+
+.special-onboarding-card {
+    display: flex;
+    flex-direction: column; /* ছবি উপরে, লেখা নিচে */
+    align-items: center;    /* সবকিছু মাঝখানে থাকবে */
+    text-align: center;     /* লেখার এলাইনমেন্ট সেন্টারে */
+    padding: 60px 40px;     /* চারপাশে ভালো স্পেস */
+    overflow: visible;      /* শ্যাডো বা ইফেক্ট যেন কেটে না যায় */
+}
+
+/* ৩টা ফোনের কন্টেইনার */
+.three-phones-container {
+    position: relative;
+    width: 350px;
+    height: 380px;          /* ফোনের জন্য হাইট ফিক্সড রাখা হলো */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;    /* ছবির নিচে এবং লেখার উপরে গ্যাপ */
+}
+
+/* লেখার সেকশন (সুন্দর প্যারাগ্রাফ স্টাইল) */
+.special-onboarding-card .card-content {
+    max-width: 700px;       /* লেখাটা বেশি ছড়িয়ে না গিয়ে মাঝখানে সুন্দরভাবে থাকবে */
+    margin: 0 auto;
+}
+
+/* শিরোনামের স্টাইল */
+.special-onboarding-card .card-content h2 {
+    font-size: 2.2rem;      /* ফন্ট সাইজ একটু বড় */
+    margin-bottom: 20px;
+    color: var(--text-dark);
+}
+
+/* প্যারাগ্রাফের স্টাইল */
+.special-onboarding-card .card-content p {
+    font-size: 1.1rem;      /* পড়ার সুবিধার জন্য ফন্ট সাইজ */
+    line-height: 1.8;       /* লাইনের মাঝখানে ফাঁকা (সুন্দর প্যারাগ্রাফের জন্য) */
+    color: var(--text-light);
+    margin-bottom: 30px;
+}
+
+/* --- আগের ফ্যান ইফেক্ট ঠিক রাখার জন্য (নিচে হাত দেওয়ার দরকার নেই) --- */
+.three-phones-container .phone-mockup {
+    position: absolute;
+    width: 170px;
+    border-width: 4px;
+    transition: all 0.5s ease;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+.three-phones-container .phone-mockup:nth-child(1) {
+    z-index: 1;
+    transform: translateX(-90px) translateY(20px) rotate(-15deg) scale(0.85);
+    opacity: 0.9;
+}
+.three-phones-container .phone-mockup:nth-child(2) {
+    z-index: 10;
+    transform: scale(1);
+    box-shadow: 0 20px 50px rgba(255, 107, 53, 0.3);
+}
+.three-phones-container .phone-mockup:nth-child(3) {
+    z-index: 1;
+    transform: translateX(90px) translateY(20px) rotate(15deg) scale(0.85);
+    opacity: 0.9;
+}
+
+/* --- মোবাইল রেসপন্সিভ --- */
+@media (max-width: 768px) {
+    .three-phones-container {
+        width: 100%;
+        height: 300px;
+    }
+    .three-phones-container .phone-mockup {
+        width: 130px;
+    }
+    .three-phones-container .phone-mockup:nth-child(1) {
+        transform: translateX(-70px) rotate(-15deg) scale(0.8);
+    }
+    .three-phones-container .phone-mockup:nth-child(3) {
+        transform: translateX(70px) rotate(15deg) scale(0.8);
+    }
+    .special-onboarding-card .card-content h2 {
+        font-size: 1.8rem;
+    }
+}
+
+/* --- রেসপন্সিভ (মোবাইলের জন্য) --- */
+@media (max-width: 768px) {
+    .special-onboarding-card {
+        flex-direction: column;
+        padding-top: 50px;
+    }
+    .three-phones-container {
+        height: 300px;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .three-phones-container .phone-mockup {
+        width: 130px; /* মোবাইলে ফোন ছোট হবে */
+    }
+    .three-phones-container .phone-mockup:nth-child(1) {
+        transform: translateX(-70px) rotate(-15deg) scale(0.8);
+    }
+    .three-phones-container .phone-mockup:nth-child(3) {
+        transform: translateX(70px) rotate(15deg) scale(0.8);
+    }
+}
+
+    /* --- ১০. রেসপন্সিভ ডিজাইন (মোবাইলের জন্য) --- */
+    @media (max-width: 992px) {
+        /* ট্যাবলেট বা ছোট ল্যাপটপে গ্রিড এক কলাম হবে */
+        .app-grid { grid-template-columns: 1fr; }
+        
+        /* ৩-টা ফোনের কার্ড মোবাইলে উপরে-নিচে হবে */
+        .special-onboarding-card {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .feature-card {
+            flex-direction: column;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .phone-mockup {
+            margin-bottom: 20px;
+            max-width: 180px; /* মোবাইলে সিঙ্গেল ফোন সাইজ */
+        }
+
+        /* মোবাইলে ৩টা ফোন যেন পাশাপাশি আটে */
+        .three-phones-container {
+            width: 100%;
+            justify-content: center;
+        }
+        .special-onboarding-card .phone-mockup {
+            flex: 0 1 100px; /* মোবাইলে ৩টা ফোন আরও ছোট হবে */
+            border-width: 2px;
+        }
+
+        .hero h1 { font-size: 2rem; }
+    }
+</style>
+</head>
+<body>
+    <nav style="padding: 20px; position: absolute; top: 0; left: 0; width: 100%; z-index: 1000;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+        
+        <a href="index.html" style="font-weight: bold; font-size: 1.2rem; color: #333; text-decoration: none;">
+            ShafaDart<span style="color: #FF6B35;">.</span>
+        </a>
+
+        <a href="index.html" style="text-decoration: none; color: #333; font-weight: 500; background: rgba(255,255,255,0.8); padding: 8px 15px; border-radius: 20px; backdrop-filter: blur(5px);">
+            ← Back to Portfolio
+        </a>
+    </div>
+</nav>
+
+    <header class="hero" id="top">
+    <div class="container">
+        <h1>Adopt a Pet BD App 🐾<br> Your Ultimate Companion for Finding <span>Love.</span></h1>
+        <p class="subtitle">More than just an app—it's a bridge between lonely hearts and forever homes. Discover, rescue, and connect with your new best friend today.</p>
+        
+        <a href="assets/app-release.apk" download="AdoptAPet_App.apk" class="hero-btn">
+            Download App Now
+        </a>
+    </div>
+</header>
+
+    <div class="container">
+        <div class="importance-note">
+            <h3>❤️ Why This Matters for Pet Lovers</h3>
+            <p>For cat and dog lovers, finding the right match or helping a stray can be challenging. This app simplifies the entire process, connecting a passionate community of rescuers and adopters to ensure every pet gets the loving home they deserve.</p>
+        </div>
+    </div>
+
+    <section class="container">
+        <div class="app-grid">
+
+            <div class="feature-card special-onboarding-card">
+    
+    <div class="three-phones-container">
+        <div class="phone-mockup">
+            <img src="assets/pet_app01.jpeg" alt="Onboarding Step 1">
+        </div>
+        <div class="phone-mockup">
+            <img src="assets/welcom_pet_app.jpeg" alt="Onboarding Step 2">
+        </div>
+        <div class="phone-mockup">
+            <img src="assets/pet_app02.jpeg" alt="Onboarding Step 3">
+        </div>
+    </div>
+
+    <div class="card-content">
+        <h2>Seamless Onboarding Experience</h2>
+        <p>Start your journey in three simple steps. Our intuitive sign-up process gets you closer to finding your perfect pet in seconds, not minutes. Just verify, set preferences, and you are ready to explore!</p>
+        <a href="#" class="card-btn">See How It Works →</a>
+    </div>
+
+</div>
+
+            <div class="feature-card">
+                <div class="phone-mockup">
+                    <img src="assets/pet_app_homepage.jpeg" alt="Home Feed Screen">
+                </div>
+                <div class="card-content">
+                    <h2>Personalized Home Feed</h2>
+                    <p>Browse an endless stream of adorable pets waiting for a home. Our smart algorithm shows you recommendations based on your preferences.</p>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="phone-mockup">
+                    <img src="assets/petdetailed.jpeg" alt="Pet Details Screen">
+                </div>
+                <div class="card-content">
+                    <h2>Detailed Pet Profiles</h2>
+                    <p>Get to know them before you meet. View comprehensive details about their personality, health status, and story to find your perfect match.</p>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="phone-mockup">
+                    <img src="assets/petappprofile.jpeg" alt="User Profile Screen">
+                </div>
+                <div class="card-content">
+                    <h2>Your Adoption Hub</h2>
+                    <p>Manage your favorite pets, track adoption applications, and update your preferences all from your dedicated profile page.</p>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="phone-mockup">
+                    <img src="assets/pet_app_newpostpage.jpeg" alt="Add Rescue Screen">
+                </div>
+                <div class="card-content">
+                    <h2>Add & Rescue Instantly</h2>
+                    <p>Found a pet in need? Quickly post their details to alert local rescuers and the community. Be a hero for a stray today.</p>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="phone-mockup">
+                    <img src="assets/rescuemap_petapp.jpeg" alt="Map Search Screen">
+                </div>
+                <div class="card-content">
+                    <h2>Interactive Map Search</h2>
+                    <p>Find adoptable pets and shelters near you. Our interactive map makes it easy to discover furry friends right in your neighborhood.</p>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="phone-mockup">
+                    <img src="assets/pet_app_searchpage.jpeg" alt="Filter Screen">
+                </div>
+                <div class="card-content">
+                    <h2>Smart Search & Filters</h2>
+                    <p>Looking for a specific breed, age, or size? Use powerful filters to narrow down your search and find exactly what you're looking for.</p>
+                </div>
+            </div>
+
+            <div class="feature-card coming-soon-card">
+    <div class="phone-mockup">
+        <img src="assets/comingsoon.png" alt="Coming Soon Screen">
+    </div>
+    <div class="card-content">
+        <h2>🚀 More Exciting Updates Coming Soon!</h2>
+        <p>We are constantly evolving! Stay tuned for features like In-App Vet Consultations, Community Events, and Direct Messaging with shelters.</p>
+        
+        <a href="#top" class="card-btn" style="color: white; cursor: pointer;">
+            stay tuned →
+        </a>
+    </div>
+</div>
+
+        </div>
+    </section>
+
+</body>
+</html>
