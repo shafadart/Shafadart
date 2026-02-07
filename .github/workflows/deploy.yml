@@ -20,4 +20,4 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         # ⚠️ নিচের লাইনটি খুব মন দিয়ে দেখুন
-        server-dir: ./public_html/  # এখানে আপনার ডোমেইনের ফোল্ডার পাথ দিন
+        server-dir: ./shafadart.com/  # এখানে আপনার ডোমেইনের ফোল্ডার পাথ দিন
