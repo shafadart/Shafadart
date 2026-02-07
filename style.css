@@ -116,6 +116,10 @@ body { font-family: var(--font-body); background-color: var(--white); color: var
 }
 .visual-orange { background: #fff3e0; } 
 
+.visual-purple {
+    background: linear-gradient(135deg, #6C63FF 0%, #3F3D56 100%) !important;
+}
+
 .phone-mockup {
     width: auto; height: 85%; /* Fits nicely inside */
     object-fit: contain; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.15));
