@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,11 @@
     <link rel="shortcut icon" href="assets/logo.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         :root {
-            --primary-green: #2E7D32; /* BioLeaf Green */
+            --primary-green: #2E7D32;
+            /* BioLeaf Green */
             --light-green: #E8F5E9;
             --text-dark: #1b1b1b;
             --text-light: #555;
@@ -26,7 +28,9 @@
             overflow-x: hidden;
         }
 
-        a { text-decoration: none; }
+        a {
+            text-decoration: none;
+        }
 
         /* Navbar */
         .navbar {
@@ -38,13 +42,15 @@
             width: 100%;
             z-index: 10;
         }
+
         .logo {
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--text-dark);
         }
+
         .back-btn {
-            background: rgba(255,255,255,0.8);
+            background: rgba(255, 255, 255, 0.8);
             padding: 8px 20px;
             border-radius: 30px;
             color: var(--text-dark);
@@ -53,7 +59,12 @@
             border: 1px solid #ddd;
             transition: 0.3s;
         }
-        .back-btn:hover { background: var(--primary-green); color: white; border-color: var(--primary-green); }
+
+        .back-btn:hover {
+            background: var(--primary-green);
+            color: white;
+            border-color: var(--primary-green);
+        }
 
         /* Hero Section */
         .hero {
@@ -61,12 +72,17 @@
             text-align: center;
             background: linear-gradient(180deg, #f1f8e9 0%, #ffffff 100%);
         }
+
         .hero h1 {
             font-size: 3.5rem;
             line-height: 1.2;
             margin-bottom: 20px;
         }
-        .hero h1 span { color: var(--primary-green); }
+
+        .hero h1 span {
+            color: var(--primary-green);
+        }
+
         .hero p {
             font-size: 1.2rem;
             color: var(--text-light);
@@ -80,6 +96,7 @@
             gap: 15px;
             flex-wrap: wrap;
         }
+
         .btn {
             padding: 15px 35px;
             border-radius: 50px;
@@ -91,18 +108,27 @@
             align-items: center;
             gap: 10px;
         }
+
         .btn-primary {
             background-color: var(--primary-green);
             color: white;
             box-shadow: 0 10px 20px rgba(46, 125, 50, 0.3);
         }
-        .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(46, 125, 50, 0.4); }
-        
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(46, 125, 50, 0.4);
+        }
+
         .btn-outline {
             border: 2px solid var(--text-dark);
             color: var(--text-dark);
         }
-        .btn-outline:hover { background: var(--text-dark); color: white; }
+
+        .btn-outline:hover {
+            background: var(--text-dark);
+            color: white;
+        }
 
         /* Feature Grid */
         .features {
@@ -110,24 +136,32 @@
             max-width: 1200px;
             margin: auto;
         }
+
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
             margin-top: 50px;
         }
+
         .feature-card {
             background: white;
             padding: 30px;
             border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
             text-align: center;
             transition: 0.3s;
             border: 1px solid #f0f0f0;
         }
-        .feature-card:hover { transform: translateY(-10px); border-color: var(--primary-green); }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-green);
+        }
+
         .icon-box {
-            width: 70px; height: 70px;
+            width: 70px;
+            height: 70px;
             background: var(--light-green);
             border-radius: 50%;
             display: flex;
@@ -137,7 +171,11 @@
             font-size: 30px;
             color: var(--primary-green);
         }
-        .feature-card h3 { margin-bottom: 10px; font-size: 1.5rem; }
+
+        .feature-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
 
         /* Showcase Section (Screenshots) */
         .showcase {
@@ -147,27 +185,38 @@
             text-align: center;
             border-radius: 30px 30px 0 0;
         }
-        .showcase h2 { font-size: 2.5rem; margin-bottom: 50px; }
+
+        .showcase h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+
         .screenshot-grid {
             display: flex;
             justify-content: center;
             gap: 20px;
             flex-wrap: wrap;
         }
+
         .phone-frame {
             width: 260px;
             border-radius: 20px;
             overflow: hidden;
             border: 5px solid #333;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
         }
-        .phone-frame img { width: 100%; display: block; }
+
+        .phone-frame img {
+            width: 100%;
+            display: block;
+        }
 
         /* Tech Stack */
         .tech-stack {
             text-align: center;
             padding: 60px 20px;
         }
+
         .tech-icons {
             display: flex;
             justify-content: center;
@@ -176,31 +225,77 @@
             color: #ddd;
             margin-top: 20px;
         }
-        .tech-icons i:hover { color: var(--primary-green); transform: scale(1.1); transition: 0.3s; }
+
+        .tech-icons i:hover {
+            color: var(--primary-green);
+            transform: scale(1.1);
+            transition: 0.3s;
+        }
 
         /* Video Modal */
         .modal {
-            display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.9); align-items: center; justify-content: center;
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
         }
-        .modal-content { position: relative; width: 90%; max-width: 800px; }
-        .close-btn { position: absolute; top: -40px; right: 0; color: white; font-size: 35px; cursor: pointer; }
-        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; }
-        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+        .modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 35px;
+            cursor: pointer;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .screenshot-grid { flex-direction: column; align-items: center; }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .screenshot-grid {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <div id="videoModal" class="modal">
         <div class="modal-content">
             <span class="close-btn">&times;</span>
             <div class="video-wrapper">
-                <iframe id="youtubeVideo" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe id="youtubeVideo" src="" frameborder="0" allow="autoplay; encrypted-media"
+                    allowfullscreen></iframe>
             </div>
         </div>
     </div>
@@ -213,7 +308,7 @@
     <section class="hero">
         <h1>BioLeaf 🌿<br> Your Pocket <span>Botanist</span></h1>
         <p>Identify plants instantly, get care tips, and explore Vastu benefits with the power of Google Gemini AI.</p>
-        
+
         <div class="btn-group">
             <a href="assets/BioLeaf.apk" download class="btn btn-primary">
                 <i class="fa-brands fa-android"></i> Download APK
@@ -272,7 +367,7 @@
         const closeBtn = document.getElementsByClassName("close-btn")[0];
 
         function openVideo(videoId) {
-            if(videoId === 'YOUR_YOUTUBE_VIDEO_ID') {
+            if (videoId === 'YOUR_YOUTUBE_VIDEO_ID') {
                 alert("Demo video coming soon!");
                 return;
             }
@@ -280,12 +375,12 @@
             modal.style.display = "flex";
         }
 
-        closeBtn.onclick = function() {
+        closeBtn.onclick = function () {
             modal.style.display = "none";
             iframe.src = "";
         }
 
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = "none";
                 iframe.src = "";
@@ -293,4 +388,5 @@
         }
     </script>
 </body>
+
 </html>

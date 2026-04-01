@@ -1,0 +1,1862 @@
+/* =======================================
+   📜 ANTIQUE LEATHER PORTFOLIO — globals.css
+   Old Book Cover Aesthetic
+   Dark + Light Theme Support
+   ======================================= */
+
+/* --- Google Fonts for Antique Feel --- */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+/* --- CSS Variables (Dark Mode Default — Deep Leather) --- */
+:root,
+[data-theme="dark"] {
+  /* Primary Gold Accent */
+  --primary: #c8a45e;
+  --primary-glow: rgba(200, 164, 94, 0.35);
+  --primary-dark: #a8873e;
+  --accent: #d4a853;
+  --accent-glow: rgba(212, 168, 83, 0.25);
+
+  /* Background Tones — Deep Espresso Leather */
+  --bg-dark: #1a120b;
+  --bg-card: rgba(139, 90, 43, 0.08);
+  --bg-card-hover: rgba(139, 90, 43, 0.14);
+  --bg-glass: rgba(26, 18, 11, 0.85);
+  --bg-section-alt: #1e150d;
+  
+  /* Text */
+  --text-primary: #f0e6d3;
+  --text-secondary: #b8a68e;
+  --text-muted: #8a7560;
+  
+  /* Borders & Shadows */
+  --border-glass: rgba(200, 164, 94, 0.12);
+  --border-ornate: rgba(200, 164, 94, 0.25);
+  --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --hover-shadow: 0 20px 60px rgba(200, 164, 94, 0.12);
+  --navbar-bg: rgba(26, 18, 11, 0.88);
+  
+  /* Fonts */
+  --font-heading: var(--font-heading), 'Cinzel', serif;
+  --font-body: var(--font-body), 'Cormorant Garamond', serif;
+  --font-accent: var(--font-accent), 'Cormorant Garamond', serif;
+  --font-display: var(--font-display), 'Cinzel', serif;
+  
+  /* Transitions */
+  --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Leather texture overlay */
+  --leather-noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* --- Light Mode Variables — Aged Parchment --- */
+[data-theme="light"] {
+  --primary: #8b5e3c;
+  --primary-glow: rgba(139, 94, 60, 0.2);
+  --primary-dark: #6d4528;
+  --accent: #a07040;
+  --accent-glow: rgba(160, 112, 64, 0.15);
+  --bg-dark: #f5ede0;
+  --bg-card: rgba(139, 90, 43, 0.04);
+  --bg-card-hover: rgba(139, 90, 43, 0.08);
+  --bg-glass: rgba(245, 237, 224, 0.9);
+  --bg-section-alt: #efe5d5;
+  --text-primary: #2c1a0e;
+  --text-secondary: #6b4f3a;
+  --text-muted: #9a836d;
+  --border-glass: rgba(139, 90, 43, 0.12);
+  --border-ornate: rgba(139, 90, 43, 0.3);
+  --card-shadow: 0 8px 32px rgba(44, 26, 14, 0.08);
+  --hover-shadow: 0 20px 60px rgba(139, 94, 60, 0.1);
+  --navbar-bg: rgba(245, 237, 224, 0.92);
+}
+
+/* --- Global Reset --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 17px;
+  letter-spacing: 0.02em;
+}
+
+/* Leather texture overlay on body */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: var(--leather-noise);
+  background-repeat: repeat;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.4;
+  mix-blend-mode: overlay;
+}
+
+/* --- Selection Color --- */
+::selection {
+  background: var(--primary);
+  color: var(--bg-dark);
+}
+
+/* --- Scrollbar Styling — Leather Feel --- */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+  border-left: 1px solid var(--border-ornate);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #8b5a2b, var(--primary), #8b5a2b);
+  border-radius: 10px;
+  border: 2px solid var(--bg-dark);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--primary), #d4a853, var(--primary));
+}
+
+/* ==============================
+   📖 BOOK COVER OPENING ANIMATION
+   ============================== */
+
+/* Dark overlay — the "table" the book sits on */
+.book-overlay {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at center 60%, rgba(30, 20, 10, 0.97) 0%, #080503 70%);
+  z-index: 10000;
+}
+
+/* 3D Scene — centers the book with perspective */
+.book-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  perspective: 2500px;
+}
+
+/* The book cover — TALL HARDCOVER fixed 960px */
+.book-cover {
+  width: 624px; /* ~0.65 × 960 */
+  height: 960px;
+  max-width: 90vw;
+  max-height: 96vh;
+  position: relative;
+  transform-style: preserve-3d;
+  transform-origin: left center;
+  filter: drop-shadow(0 8px 25px rgba(0, 0, 0, 0.6));
+}
+
+/* Front of the book cover */
+.book-front {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(200, 164, 94, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(139, 90, 43, 0.08) 0%, transparent 50%),
+    linear-gradient(135deg, #2a1a0e 0%, #1a120b 30%, #241810 60%, #1e140c 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+  border-radius: 2px 10px 10px 2px;
+  /* Embossed book edge on right + depth */
+  box-shadow:
+    3px 0 0 #3a2815,
+    6px 0 0 #2a1a0e,
+    8px 2px 0 #1a120b,
+    inset -2px 0 8px rgba(0, 0, 0, 0.3),
+    inset 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Leather texture on cover */
+.book-front::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.6;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Outer ornamental border */
+.book-border-outer {
+  position: absolute;
+  inset: 18px;
+  border: 2px solid rgba(200, 164, 94, 0.4);
+  border-radius: 3px;
+  pointer-events: none;
+}
+
+/* Inner ornamental border */
+.book-border-inner {
+  position: absolute;
+  inset: 30px;
+  border: 1px solid rgba(200, 164, 94, 0.2);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+/* Corner ornaments */
+.book-corner {
+  position: absolute;
+  font-size: 16px;
+  color: rgba(200, 164, 94, 0.55);
+  z-index: 2;
+  line-height: 1;
+}
+
+.book-corner-tl { top: 34px; left: 34px; }
+.book-corner-tr { top: 34px; right: 34px; transform: rotate(90deg); }
+.book-corner-bl { bottom: 34px; left: 34px; transform: rotate(-90deg); }
+.book-corner-br { bottom: 34px; right: 34px; transform: rotate(180deg); }
+
+/* Decorative horizontal lines */
+.book-ornament-line {
+  width: 100px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200, 164, 94, 0.5), transparent);
+  margin: 14px auto;
+  transform-origin: center;
+}
+
+.book-ornament-bottom {
+  width: 70px;
+}
+
+/* Monogram on cover */
+.book-monogram {
+  font-family: 'Cinzel', serif;
+  font-size: 5rem;
+  font-weight: 400;
+  color: transparent;
+  background: linear-gradient(180deg, #d4a853 0%, #c8a45e 40%, #a08040 70%, #8b6e3c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 8px;
+  text-shadow: none;
+  filter: drop-shadow(0 2px 8px rgba(200, 164, 94, 0.3));
+  position: relative;
+  z-index: 2;
+}
+
+/* Book title */
+.book-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.7rem;
+  font-weight: 500;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: rgba(200, 164, 94, 0.85);
+  text-shadow: 0 0 30px rgba(200, 164, 94, 0.2);
+  position: relative;
+  z-index: 2;
+}
+
+.book-title-dot {
+  color: #d4a853;
+  text-shadow: 0 0 15px rgba(212, 168, 83, 0.5);
+}
+
+/* Book subtitle */
+.book-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: rgba(200, 164, 94, 0.5);
+  letter-spacing: 3px;
+  margin-top: 6px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Bottom ornament */
+.book-bottom-ornament {
+  font-size: 1.3rem;
+  color: rgba(200, 164, 94, 0.35);
+  margin-top: 10px;
+  position: relative;
+  z-index: 2;
+}
+
+/* "Click here to open Shafa's diary" instruction */
+.book-open-hint {
+  position: absolute;
+  bottom: 50px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: rgba(200, 164, 94, 0.6);
+  letter-spacing: 2.5px;
+  z-index: 3;
+  animation: hintPulse 2.5s ease-in-out infinite;
+  cursor: pointer;
+  text-shadow: 0 0 8px rgba(200, 164, 94, 0.15);
+}
+
+@keyframes hintPulse {
+  0%, 100% { opacity: 0.45; text-shadow: 0 0 0 transparent; transform: translateY(0); }
+  50% { opacity: 0.9; text-shadow: 0 0 16px rgba(200, 164, 94, 0.4); transform: translateY(-2px); }
+}
+
+/* Spine shadow on left edge */
+.book-spine-shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 18px;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, transparent 100%);
+  pointer-events: none;
+  border-radius: 2px 0 0 2px;
+}
+
+/* Realistic book shadow on the "table" surface */
+.book-shadow {
+  width: 560px;
+  max-width: 85vw;
+  height: 25px;
+  margin-top: 14px;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.5), transparent 70%);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ====== MOBILE — Book becomes FULL SCREEN ====== */
+@media (max-width: 600px) {
+  .book-scene {
+    perspective: 1800px;
+  }
+  .book-cover {
+    width: 94vw;
+    height: 96vh;
+    max-width: none;
+    max-height: none;
+  }
+  .book-front {
+    border-radius: 0 6px 6px 0;
+  }
+  .book-monogram {
+    font-size: 4rem;
+  }
+  .book-title {
+    font-size: 1.4rem;
+    letter-spacing: 4px;
+  }
+  .book-subtitle {
+    font-size: 0.9rem;
+  }
+  .book-border-outer {
+    inset: 14px;
+  }
+  .book-border-inner {
+    inset: 24px;
+  }
+  .book-corner { font-size: 14px; }
+  .book-corner-tl { top: 28px; left: 28px; }
+  .book-corner-tr { top: 28px; right: 28px; }
+  .book-corner-bl { bottom: 28px; left: 28px; }
+  .book-corner-br { bottom: 28px; right: 28px; }
+  .book-shadow {
+    display: none;
+  }
+  .book-open-hint {
+    bottom: 35px;
+  }
+}
+
+/* ====== TABLET — medium book size ====== */
+@media (min-width: 601px) and (max-width: 900px) {
+  .book-cover {
+    width: calc(78vh * 0.62);
+    height: 78vh;
+    max-width: 340px;
+    max-height: 550px;
+  }
+  .book-monogram {
+    font-size: 4rem;
+  }
+  .book-title {
+    font-size: 1.3rem;
+    letter-spacing: 4px;
+  }
+}
+
+/* ==============================
+   📜 NAVBAR - Antique Glass
+   ============================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 18px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--navbar-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 1000;
+  border-bottom: 1px solid var(--border-ornate);
+  transition: all 0.4s var(--transition-smooth);
+}
+
+.logo {
+  font-family: 'Cinzel', var(--font-heading);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.logo .highlight {
+  color: var(--primary);
+  text-shadow: 0 0 10px var(--primary-glow);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: all 0.3s var(--transition-smooth);
+  position: relative;
+  font-family: 'Cinzel', var(--font-heading);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  transition: width 0.3s var(--transition-smooth);
+  border-radius: 2px;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--primary);
+}
+
+.btn-nav {
+  padding: 8px 22px;
+  border: 1px solid var(--primary) !important;
+  border-radius: 4px;
+  color: var(--primary) !important;
+  transition: all 0.3s var(--transition-smooth) !important;
+  letter-spacing: 1.5px;
+}
+
+.btn-nav:hover {
+  background: var(--primary) !important;
+  color: var(--bg-dark) !important;
+  box-shadow: 0 0 25px var(--primary-glow) !important;
+}
+
+.btn-nav::after {
+  display: none !important;
+}
+
+.menu-icon {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--text-primary);
+}
+
+/* --- Mobile Menu --- */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 80%;
+  height: 100%;
+  background: rgba(26, 18, 11, 0.97);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+  transition: 0.5s var(--transition-smooth);
+  border-left: 1px solid var(--border-ornate);
+}
+
+.mobile-menu.active {
+  right: 0;
+}
+
+.mobile-menu a {
+  text-decoration: none;
+  color: var(--text-primary);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  font-family: 'Cinzel', var(--font-heading);
+}
+
+.mobile-menu a:hover {
+  color: var(--primary);
+  text-shadow: 0 0 15px var(--primary-glow);
+}
+
+.close-menu {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  font-size: 32px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: all 0.3s;
+}
+
+.close-menu:hover {
+  color: var(--primary);
+}
+
+/* ==============================
+   📜 HERO SECTION
+   ============================== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 120px 5% 60px;
+  background: radial-gradient(ellipse at 30% 50%, rgba(200, 164, 94, 0.04) 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 50%, rgba(139, 90, 43, 0.03) 0%, transparent 60%),
+              var(--bg-dark);
+}
+
+/* Decorative corner ornaments for hero */
+.hero::before,
+.hero::after {
+  content: '✦';
+  position: absolute;
+  font-size: 24px;
+  color: var(--border-ornate);
+  opacity: 0.4;
+  animation: ornamentPulse 4s ease-in-out infinite;
+}
+
+.hero::before {
+  top: 100px;
+  left: 40px;
+}
+
+.hero::after {
+  bottom: 40px;
+  right: 40px;
+  animation-delay: 2s;
+}
+
+@keyframes ornamentPulse {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.1); }
+}
+
+/* Animated bg orbs — warm tones */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.2;
+  z-index: 0;
+  animation: blobFloat 8s ease-in-out infinite;
+}
+
+.blob-1 {
+  top: -15%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(200, 164, 94, 0.5) 0%, transparent 70%);
+}
+
+.blob-2 {
+  bottom: -15%;
+  left: -10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(139, 90, 43, 0.4) 0%, transparent 70%);
+  animation-delay: -4s;
+}
+
+@keyframes blobFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -30px) scale(1.05); }
+  66% { transform: translate(-20px, 20px) scale(0.95); }
+}
+
+.hero-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  z-index: 1;
+  gap: 40px;
+}
+
+/* ===== BACKGROUND WATERMARK — Giant S ===== */
+.hero-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Cinzel', serif;
+  font-size: clamp(280px, 35vw, 500px);
+  font-weight: 700;
+  color: rgba(200, 164, 94, 0.035);
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+  letter-spacing: -10px;
+}
+
+/* ===== FLOATING CODE SYMBOLS ===== */
+.floating-code-symbol {
+  font-family: 'Fira Code', 'Courier New', monospace;
+  color: rgba(200, 164, 94, 0.14);
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-shadow: 0 0 8px rgba(200, 164, 94, 0.08);
+}
+
+.hero-text {
+  flex: 1.2;
+}
+
+.greeting {
+  font-family: 'Cormorant Garamond', var(--font-accent);
+  color: var(--primary);
+  font-size: 18px;
+  display: block;
+  margin-bottom: 12px;
+  font-style: italic;
+  text-shadow: 0 0 15px var(--primary-glow);
+  letter-spacing: 1px;
+}
+
+.full-name {
+  font-family: 'Cinzel', var(--font-display);
+  font-size: 3.2rem;
+  line-height: 1.15;
+  margin-bottom: 15px;
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary) 50%, #d4a853 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  white-space: nowrap;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.typewriter-container {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin-bottom: 25px;
+  font-weight: 400;
+  font-family: 'Cormorant Garamond', var(--font-body);
+  font-style: italic;
+}
+
+.typing {
+  color: var(--primary);
+  font-weight: 600;
+  text-shadow: 0 0 10px var(--primary-glow);
+}
+
+.bio {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.85;
+  margin-bottom: 35px;
+  max-width: 95%;
+  font-family: 'Cormorant Garamond', var(--font-body);
+  letter-spacing: 0.3px;
+}
+
+.bio strong {
+  color: var(--text-primary);
+}
+
+.cta-group {
+  display: flex;
+  gap: 15px;
+}
+
+.btn {
+  padding: 13px 32px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.4s var(--transition-smooth);
+  cursor: pointer;
+  display: inline-block;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-family: 'Cinzel', var(--font-heading);
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, var(--primary), #a87d3e);
+  color: var(--bg-dark);
+  box-shadow: 0 6px 25px var(--primary-glow);
+  border: none;
+}
+
+.primary-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 35px rgba(200, 164, 94, 0.5);
+}
+
+.outline-btn {
+  border: 1.5px solid var(--text-secondary);
+  color: var(--text-primary);
+  background: transparent;
+}
+
+.outline-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: rgba(200, 164, 94, 0.05);
+  box-shadow: 0 0 20px rgba(200, 164, 94, 0.1);
+}
+
+.socials {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+}
+
+.socials a {
+  color: var(--text-muted);
+  font-size: 20px;
+  transition: all 0.3s var(--transition-smooth);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 4px;
+  border: 1px solid var(--border-ornate);
+  background: var(--bg-card);
+}
+
+.socials a:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+  background: rgba(200, 164, 94, 0.08);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 20px var(--primary-glow);
+}
+
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+
+/* ==============================
+   ✨ ORNATE GOLD PORTRAIT FRAME
+   ============================== */
+.ornate-frame {
+  position: relative;
+  padding: 18px;
+  background: linear-gradient(135deg, rgba(200, 164, 94, 0.08), rgba(139, 90, 43, 0.04));
+  border: 2px solid rgba(200, 164, 94, 0.35);
+  border-radius: 8px;
+  box-shadow:
+    0 0 0 1px rgba(200, 164, 94, 0.1),
+    0 0 0 6px rgba(26, 18, 11, 0.8),
+    0 0 0 7px rgba(200, 164, 94, 0.2),
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    inset 0 0 30px rgba(0, 0, 0, 0.2);
+  animation: floatSubtle 6s ease-in-out infinite;
+}
+
+/* Frame corner decorations */
+.frame-corner {
+  position: absolute;
+  font-size: 22px;
+  color: rgba(200, 164, 94, 0.5);
+  z-index: 2;
+  line-height: 1;
+  filter: drop-shadow(0 0 4px rgba(200, 164, 94, 0.3));
+  transition: color 0.3s;
+}
+
+.ornate-frame:hover .frame-corner {
+  color: rgba(200, 164, 94, 0.8);
+}
+
+.frame-tl { top: -2px; left: -2px; transform: rotate(0deg); }
+.frame-tr { top: -2px; right: -2px; transform: scaleX(-1); }
+.frame-bl { bottom: -2px; left: -2px; transform: scaleY(-1); }
+.frame-br { bottom: -2px; right: -2px; transform: scale(-1, -1); }
+
+.img-box {
+  width: 360px;
+  height: 360px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+  filter: sepia(0.3) contrast(1.1) brightness(0.9) saturate(0.85);
+  transition: all 0.5s var(--transition-smooth);
+}
+
+/* Warm antique overlay on photo */
+.img-warm-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 4px;
+  background: linear-gradient(
+    135deg,
+    rgba(139, 90, 43, 0.15) 0%,
+    rgba(200, 164, 94, 0.08) 50%,
+    rgba(90, 60, 20, 0.12) 100%
+  );
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  z-index: 1;
+}
+
+.ornate-frame:hover .img-box img {
+  filter: sepia(0.15) contrast(1.05) brightness(0.95) saturate(0.95);
+  transform: scale(1.03);
+}
+
+@keyframes gradientBorder {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes floatSubtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* ==============================
+   ✨ GOLD FOIL SHIMMER EFFECT
+   ============================== */
+.gold-shimmer {
+  position: relative;
+  background: linear-gradient(
+    90deg,
+    var(--text-primary) 0%,
+    var(--text-primary) 35%,
+    #d4a853 42%,
+    #f5d98a 50%,
+    #d4a853 58%,
+    var(--primary) 65%,
+    var(--text-primary) 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: goldShimmer 4s ease-in-out infinite;
+}
+
+@keyframes goldShimmer {
+  0% { background-position: 100% 50%; }
+  50% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* ==============================
+   🌑 VIGNETTE + PARCHMENT TEXTURE
+   ============================== */
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 40%,
+    rgba(13, 8, 4, 0.3) 70%,
+    rgba(13, 8, 4, 0.7) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-parchment {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='0.025'/%3E%3C/svg%3E");
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ==============================
+   📜 DECORATIVE MONOGRAM INITIAL
+   ============================== */
+.hero-monogram {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.monogram-letter {
+  font-family: 'Cinzel', serif;
+  font-size: 4.5rem;
+  font-weight: 400;
+  line-height: 1;
+  color: transparent;
+  background: linear-gradient(180deg, #d4a853 0%, #c8a45e 30%, #a08040 60%, rgba(200, 164, 94, 0.6) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: drop-shadow(0 2px 10px rgba(200, 164, 94, 0.25));
+  user-select: none;
+}
+
+.monogram-line {
+  height: 1px;
+  width: 60px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(200, 164, 94, 0.5),
+    rgba(200, 164, 94, 0.25)
+  );
+}
+
+.monogram-line-left {
+  order: -1;
+  background: linear-gradient(
+    90deg,
+    rgba(200, 164, 94, 0.25),
+    rgba(200, 164, 94, 0.5),
+    transparent
+  );
+}
+
+.monogram-line-right {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(200, 164, 94, 0.5),
+    rgba(200, 164, 94, 0.25)
+  );
+}
+
+/* ==============================
+   ✦ GOLD DUST PARTICLES
+   ============================== */
+.gold-dust {
+  font-family: serif;
+  user-select: none;
+  pointer-events: none;
+  text-shadow: 0 0 6px rgba(200, 164, 94, 0.3);
+}
+
+/* ==============================
+   📜 SECTIONS COMMON
+   ============================== */
+.section {
+  padding: 100px 5%;
+  position: relative;
+}
+
+/* Ornamental divider between sections */
+.section::before {
+  content: '— ✦ —';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  color: var(--border-ornate);
+  letter-spacing: 8px;
+  opacity: 0.5;
+}
+
+.bg-light {
+  background: var(--bg-section-alt);
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.tag {
+  color: var(--primary);
+  font-family: 'Cormorant Garamond', var(--font-accent);
+  font-size: 16px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+  text-shadow: 0 0 10px var(--primary-glow);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-style: italic;
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  font-family: 'Cinzel', var(--font-heading);
+  background: linear-gradient(135deg, var(--text-primary), var(--primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* ==============================
+   📜 PROJECT CARDS - Leather Embossed
+   ============================== */
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.compact-card {
+  display: flex;
+  align-items: center;
+  background: var(--bg-card);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  transition: all 0.5s var(--transition-smooth);
+  min-height: 350px;
+  border: 1px solid var(--border-ornate);
+  backdrop-filter: blur(10px);
+}
+
+.compact-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--hover-shadow);
+  border-color: rgba(200, 164, 94, 0.35);
+}
+
+.compact-visual {
+  flex: 1;
+  height: 400px;
+  background: rgba(200, 164, 94, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.visual-orange {
+  background: rgba(200, 140, 53, 0.08);
+}
+
+.visual-purple {
+  background: linear-gradient(135deg, rgba(108, 99, 255, 0.2) 0%, rgba(63, 61, 86, 0.3) 100%) !important;
+}
+
+.phone-mockup {
+  width: auto;
+  height: 85%;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.4));
+  transition: all 0.6s var(--transition-smooth);
+}
+
+.compact-card:hover .phone-mockup {
+  transform: scale(1.05) rotate(-2deg);
+  filter: drop-shadow(0 25px 50px rgba(200, 164, 94, 0.15));
+}
+
+.compact-content {
+  flex: 1.2;
+  padding: 40px 50px;
+}
+
+.p-tag {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 4px 14px;
+  border: 1px solid rgba(200, 164, 94, 0.25);
+  border-radius: 4px;
+  background: rgba(200, 164, 94, 0.05);
+  font-family: 'Cinzel', var(--font-heading);
+}
+
+.private-tag {
+  color: #c47a30 !important;
+  border-color: rgba(196, 122, 48, 0.25) !important;
+  background: rgba(196, 122, 48, 0.05) !important;
+}
+
+.compact-content h3 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: var(--text-primary);
+  font-family: 'Cinzel', var(--font-heading);
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+.compact-content p {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 25px;
+  font-size: 15px;
+  font-family: 'Cormorant Garamond', var(--font-body);
+}
+
+/* Tech Tags */
+.tech-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.tech-row span {
+  background: rgba(200, 164, 94, 0.05);
+  border: 1px solid var(--border-ornate);
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s;
+}
+
+.tech-row span:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: rgba(200, 164, 94, 0.08);
+}
+
+.tech-row span i {
+  color: var(--primary);
+}
+
+/* Action Buttons */
+.compact-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.btn-compact {
+  padding: 12px 28px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.4s var(--transition-smooth);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-family: 'Cinzel', var(--font-heading);
+}
+
+.btn-compact.primary {
+  background: linear-gradient(135deg, var(--primary), #a87d3e);
+  color: var(--bg-dark);
+  box-shadow: 0 5px 15px var(--primary-glow);
+}
+
+.btn-compact.primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(200, 164, 94, 0.4);
+}
+
+.btn-compact.outline {
+  background: transparent;
+  border: 1.5px solid var(--text-secondary);
+  color: var(--text-primary);
+}
+
+.btn-compact.outline:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: rgba(200, 164, 94, 0.05);
+}
+
+.btn-compact.full {
+  width: 100%;
+  justify-content: center;
+}
+
+.reverse {
+  flex-direction: row-reverse;
+}
+
+/* ==============================
+   📜 ABOUT SECTION
+   ============================== */
+.about-content {
+  display: flex;
+  gap: 50px;
+  align-items: flex-start;
+}
+
+.about-img {
+  flex: 1;
+}
+
+.about-img img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  border: 2px solid var(--border-ornate);
+  transition: all 0.5s;
+}
+
+.about-img img:hover {
+  box-shadow: 0 25px 60px rgba(200, 164, 94, 0.15);
+  border-color: rgba(200, 164, 94, 0.4);
+}
+
+.about-text {
+  flex: 1.5;
+}
+
+.about-text p {
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  line-height: 1.9;
+  font-size: 15.5px;
+  text-align: justify;
+  font-family: 'Cormorant Garamond', var(--font-body);
+}
+
+.about-text p strong {
+  color: var(--primary);
+}
+
+.about-text p em {
+  color: var(--accent);
+}
+
+.about-buttons {
+  margin-top: 30px;
+}
+
+.download-cv {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: var(--bg-dark);
+  box-shadow: 0 8px 25px var(--primary-glow);
+  transition: all 0.4s var(--transition-smooth);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-family: 'Cinzel', var(--font-heading);
+  font-size: 13px;
+}
+
+.download-cv:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(200, 164, 94, 0.5);
+}
+
+/* ==============================
+   📜 GALLERY — Masonry with Leather Frame
+   ============================== */
+.gallery-grid {
+  column-count: 3;
+  column-gap: 16px;
+}
+
+.g-item {
+  margin-bottom: 16px;
+  break-inside: avoid;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--border-ornate);
+  transition: all 0.5s var(--transition-smooth);
+}
+
+.g-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(26, 18, 11, 0.6) 100%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+
+.g-item:hover::after {
+  opacity: 1;
+}
+
+.g-item img {
+  width: 100%;
+  display: block;
+  transition: all 0.6s var(--transition-smooth);
+}
+
+.g-item:hover img {
+  transform: scale(1.08);
+}
+
+.g-item:hover {
+  border-color: rgba(200, 164, 94, 0.45);
+  box-shadow: 0 10px 30px rgba(200, 164, 94, 0.1);
+}
+
+/* ==============================
+   📜 CONTACT & FOOTER
+   ============================== */
+.footer-section {
+  padding-bottom: 20px;
+}
+
+.contact-box {
+  background: linear-gradient(135deg, rgba(200, 164, 94, 0.06), rgba(139, 90, 43, 0.04));
+  border: 1px solid var(--border-ornate);
+  padding: 60px 30px;
+  border-radius: 12px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Double border ornament */
+.contact-box::after {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px solid var(--border-ornate);
+  border-radius: 8px;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.contact-box::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse, rgba(200, 164, 94, 0.03) 0%, transparent 70%);
+  animation: contactGlow 6s ease-in-out infinite;
+}
+
+@keyframes contactGlow {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(5%, 5%); }
+}
+
+.contact-box h2 {
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+  position: relative;
+  background: linear-gradient(135deg, var(--text-primary), var(--primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: 'Cinzel', var(--font-heading);
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+.contact-box p {
+  color: var(--text-secondary);
+  margin-bottom: 25px;
+  position: relative;
+  font-family: 'Cormorant Garamond', var(--font-body);
+  font-size: 1.1rem;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.contact-pill {
+  padding: 12px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-ornate);
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--text-primary);
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s var(--transition-smooth);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  backdrop-filter: blur(10px);
+  letter-spacing: 1px;
+  font-family: 'Cinzel', var(--font-heading);
+  font-size: 13px;
+}
+
+.contact-pill:hover {
+  transform: translateY(-4px);
+  color: var(--primary);
+  border-color: var(--primary);
+  box-shadow: 0 8px 25px var(--primary-glow);
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--border-ornate);
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: var(--text-muted);
+  position: relative;
+  font-family: 'Cormorant Garamond', var(--font-body);
+  letter-spacing: 0.5px;
+}
+
+.footer-socials a {
+  color: var(--text-muted);
+  margin-left: 18px;
+  font-size: 16px;
+  transition: all 0.3s;
+}
+
+.footer-socials a:hover {
+  color: var(--primary);
+  text-shadow: 0 0 10px var(--primary-glow);
+}
+
+/* ==============================
+   📜 MODAL
+   ============================== */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(26, 18, 11, 0.92);
+  backdrop-filter: blur(10px);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  width: 90%;
+  max-width: 800px;
+  position: relative;
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid var(--border-ornate);
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+}
+
+.close-btn {
+  position: absolute;
+  top: -45px;
+  right: 0;
+  color: var(--text-secondary);
+  font-size: 35px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.close-btn:hover {
+  color: var(--primary);
+}
+
+/* ==============================
+   📱 RESPONSIVE DESIGN
+   ============================== */
+@media (max-width: 900px) {
+  .nav-links {
+    display: none;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  .hero-container {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .hero-text {
+    margin-top: 20px;
+  }
+
+  .hero-image {
+    justify-content: center;
+  }
+
+  .img-box {
+    width: 220px;
+    height: 220px;
+  }
+
+  .ornate-frame {
+    padding: 12px;
+  }
+
+  .full-name {
+    font-size: 1.6rem;
+    line-height: 1.2;
+    white-space: normal;
+    letter-spacing: 2px;
+  }
+
+  .hero-monogram {
+    justify-content: center;
+  }
+
+  .monogram-letter {
+    font-size: 3rem;
+  }
+
+  .monogram-line {
+    width: 40px;
+  }
+
+  .cta-group,
+  .socials {
+    justify-content: center;
+  }
+
+  .bio {
+    max-width: 100%;
+  }
+
+  /* Project Cards */
+  .compact-card,
+  .compact-card.reverse {
+    flex-direction: column;
+  }
+
+  .compact-visual {
+    height: 280px;
+    width: 100%;
+  }
+
+  .compact-content {
+    padding: 25px 20px;
+    text-align: center;
+  }
+
+  .tech-row, .compact-actions {
+    justify-content: center;
+  }
+
+  /* About */
+  .about-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-img {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  /* Gallery */
+  .gallery-grid {
+    column-count: 2;
+  }
+
+  .section-header h2 {
+    font-size: 1.8rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .hero::before,
+  .hero::after {
+    display: none;
+  }
+
+  .frame-corner {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-grid {
+    column-count: 1;
+  }
+
+  .full-name {
+    font-size: 1.4rem;
+  }
+
+  .section {
+    padding: 60px 5%;
+  }
+
+  .compact-content h3 {
+    font-size: 1.4rem;
+  }
+
+  .hero {
+    padding: 100px 5% 40px;
+  }
+}
+
+/* ==============================
+   🌙☀️ THEME TOGGLE BUTTON
+   ============================== */
+.theme-toggle {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  border: 1px solid var(--border-ornate);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: all 0.3s var(--transition-smooth);
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: rgba(200, 164, 94, 0.08);
+  box-shadow: 0 0 15px var(--primary-glow);
+}
+
+/* ==============================
+   ☀️ LIGHT MODE OVERRIDES
+   ============================== */
+[data-theme="light"] body {
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .navbar {
+  background: var(--navbar-bg);
+  border-bottom-color: var(--border-ornate);
+}
+
+[data-theme="light"] .logo {
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .hero {
+  background: radial-gradient(ellipse at 30% 50%, rgba(139, 94, 60, 0.06) 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 50%, rgba(160, 112, 64, 0.04) 0%, transparent 60%),
+              var(--bg-dark);
+}
+
+[data-theme="light"] .blob-1 {
+  background: radial-gradient(circle, rgba(139, 94, 60, 0.3) 0%, transparent 70%);
+  opacity: 0.15;
+}
+
+[data-theme="light"] .blob-2 {
+  background: radial-gradient(circle, rgba(160, 112, 64, 0.3) 0%, transparent 70%);
+  opacity: 0.15;
+}
+
+[data-theme="light"] .full-name {
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary) 60%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="light"] .section-header h2 {
+  background: linear-gradient(135deg, var(--text-primary), var(--primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="light"] .img-box::before {
+  opacity: 0.3;
+}
+
+[data-theme="light"] .img-box img {
+  border-color: rgba(139, 90, 43, 0.2);
+}
+
+[data-theme="light"] .compact-card {
+  background: rgba(255, 250, 240, 0.9);
+  box-shadow: 0 4px 20px rgba(44, 26, 14, 0.06);
+  border-color: var(--border-ornate);
+}
+
+[data-theme="light"] .compact-card:hover {
+  box-shadow: 0 12px 40px rgba(44, 26, 14, 0.12);
+}
+
+[data-theme="light"] .contact-box {
+  background: linear-gradient(135deg, rgba(139, 94, 60, 0.05), rgba(160, 112, 64, 0.03));
+}
+
+[data-theme="light"] .contact-pill {
+  background: rgba(255, 250, 240, 0.9);
+  box-shadow: 0 2px 10px rgba(44, 26, 14, 0.06);
+}
+
+[data-theme="light"] .socials a {
+  background: rgba(255, 250, 240, 0.9);
+  box-shadow: 0 2px 8px rgba(44, 26, 14, 0.06);
+}
+
+[data-theme="light"] .about-img img {
+  box-shadow: 0 15px 40px rgba(44, 26, 14, 0.12);
+}
+
+[data-theme="light"] .g-item {
+  box-shadow: 0 2px 10px rgba(44, 26, 14, 0.06);
+}
+
+[data-theme="light"] #loader {
+  background: #f5ede0;
+}
+
+[data-theme="light"] .loader-text {
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .mobile-menu {
+  background: rgba(245, 237, 224, 0.97);
+}
+
+[data-theme="light"] .mobile-menu a {
+  color: var(--text-primary);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-track {
+  background: #f5ede0;
+}
+
+[data-theme="light"] .section::before {
+  color: rgba(139, 90, 43, 0.3);
+}
+
+/* ==============================
+   🔤 DISPLAY FONT FOR HERO
+   ============================== */
+.full-name {
+  font-family: 'Cinzel', var(--font-display);
+}
