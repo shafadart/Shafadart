@@ -1,0 +1,23 @@
+name: 🚀 Auto Deploy to ExonHost
+
+on:
+  push:
+    branches:
+      - main  # ⚠️ আপনার মেইন ব্রাঞ্চের নাম যদি 'master' হয় তবে এখানে master লিখবেন
+
+jobs:
+  web-deploy:
+    name: 🎉 Syncing Files
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v3
+
+    - name: 📂 FTP Deploy
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        # ⚠️ নিচের লাইনটি খুব মন দিয়ে দেখুন
+        server-dir: ../  # এখানে আপনার ডোমেইনের ফোল্ডার পাথ দিন
