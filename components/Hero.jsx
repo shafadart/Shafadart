@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 import Link from 'next/link';
+import Image from 'next/image';
 
 /* --- Gold Dust Particle Data --- */
 const goldDustParticles = [
@@ -231,7 +232,15 @@ export default function Hero() {
             <span className="frame-corner frame-br">❧</span>
 
             <div className="img-box">
-              <img src="/assets/shafa.png" alt="Shafa Profile" />
+              <Image
+                src="/assets/shafa.png"
+                alt="Shafa Profile"
+                width={360}
+                height={360}
+                priority
+                quality={75}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '4px', filter: 'sepia(0.3) contrast(1.1) brightness(0.9) saturate(0.85)' }}
+              />
               {/* Warm antique overlay on photo */}
               <div className="img-warm-overlay" />
             </div>

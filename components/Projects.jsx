@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import ScrollReveal from './ScrollReveal';
 import Link from 'next/link';
+import Image from 'next/image';
 import { getProjects } from '@/lib/projectsData';
 
 export default function Projects() {
@@ -49,9 +50,13 @@ export default function Projects() {
                     className="compact-visual"
                     style={{ background: project.isSpecialGradient ? 'transparent' : (project.visualBg || 'rgba(200, 164, 94, 0.04)') }}
                   >
-                    <img
+                    <Image
                       src={project.image}
                       alt={project.title}
+                      width={400}
+                      height={340}
+                      quality={75}
+                      loading="lazy"
                       className="phone-mockup"
                       style={project.isSpecialGradient ? { filter: 'drop-shadow(0 15px 30px rgba(0,0,0,0.6))' } : {}}
                     />

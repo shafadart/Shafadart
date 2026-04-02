@@ -4,8 +4,8 @@
    Dark + Light Theme Support
    ======================================= */
 
-/* --- Google Fonts for Antique Feel --- */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+/* --- Fonts loaded via Next.js font system in layout.jsx --- */
+/* Removed duplicate @import — fonts are optimized by next/font/google */
 
 /* --- CSS Variables (Dark Mode Default — Deep Leather) --- */
 :root,
@@ -81,6 +81,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
+  overflow-x: hidden;
 }
 
 body {
@@ -92,6 +93,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 17px;
   letter-spacing: 0.02em;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100vw;
 }
 
 /* Leather texture overlay on body */
@@ -581,6 +585,8 @@ body::before {
   background: radial-gradient(ellipse at 30% 50%, rgba(200, 164, 94, 0.04) 0%, transparent 60%),
               radial-gradient(ellipse at 70% 50%, rgba(139, 90, 43, 0.03) 0%, transparent 60%),
               var(--bg-dark);
+  width: 100%;
+  max-width: 100vw;
 }
 
 /* Decorative corner ornaments for hero */
@@ -700,7 +706,7 @@ body::before {
 
 .full-name {
   font-family: 'Cinzel', var(--font-display);
-  font-size: 3.2rem;
+  font-size: clamp(1.3rem, 5vw, 3.2rem);
   line-height: 1.15;
   margin-bottom: 15px;
   background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary) 50%, #d4a853 100%);
@@ -1035,6 +1041,9 @@ body::before {
 .section {
   padding: 100px 5%;
   position: relative;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 /* Ornamental divider between sections */
@@ -1109,6 +1118,8 @@ body::before {
   min-height: 350px;
   border: 1px solid var(--border-ornate);
   backdrop-filter: blur(10px);
+  max-width: 100%;
+  width: 100%;
 }
 
 .compact-card:hover {
@@ -1126,6 +1137,7 @@ body::before {
   justify-content: center;
   position: relative;
   overflow: hidden;
+  min-width: 0;
 }
 
 .visual-orange {
@@ -1137,8 +1149,10 @@ body::before {
 }
 
 .phone-mockup {
-  width: auto;
-  height: 85%;
+  width: 100%;
+  height: 100%;
+  max-width: 85%;
+  max-height: 85%;
   object-fit: contain;
   filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.4));
   transition: all 0.6s var(--transition-smooth);
@@ -1152,6 +1166,9 @@ body::before {
 .compact-content {
   flex: 1.2;
   padding: 40px 50px;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .p-tag {
@@ -1228,6 +1245,7 @@ body::before {
 .compact-actions {
   display: flex;
   gap: 15px;
+  flex-wrap: wrap;
 }
 
 .btn-compact {
@@ -1633,36 +1651,78 @@ body::before {
   .cta-group,
   .socials {
     justify-content: center;
+    flex-wrap: wrap;
   }
 
   .bio {
     max-width: 100%;
+    font-size: 0.95rem;
   }
 
   /* Project Cards */
   .compact-card,
   .compact-card.reverse {
     flex-direction: column;
+    min-height: auto;
   }
 
   .compact-visual {
-    height: 280px;
+    height: 260px;
     width: 100%;
+    flex: none;
+  }
+
+  .phone-mockup {
+    max-height: 85%;
+    max-width: 85%;
+    object-fit: contain;
   }
 
   .compact-content {
     padding: 25px 20px;
     text-align: center;
+    flex: none;
+    width: 100%;
   }
 
-  .tech-row, .compact-actions {
+  .compact-content h3 {
+    font-size: 1.5rem;
+  }
+
+  .compact-content p {
+    font-size: 14px;
+  }
+
+  .tech-row {
     justify-content: center;
+    gap: 8px;
+  }
+
+  .tech-row span {
+    font-size: 11px;
+    padding: 5px 10px;
+  }
+
+  .compact-actions {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .btn-compact {
+    padding: 10px 20px;
+    font-size: 12px;
+  }
+
+  .projects-list {
+    gap: 30px;
   }
 
   /* About */
   .about-content {
     flex-direction: column;
     text-align: center;
+    gap: 30px;
   }
 
   .about-img {
@@ -1670,13 +1730,41 @@ body::before {
     margin: 0 auto;
   }
 
+  .about-text p {
+    font-size: 14px;
+    text-align: left;
+  }
+
   /* Gallery */
   .gallery-grid {
     column-count: 2;
+    column-gap: 10px;
+  }
+
+  .g-item {
+    margin-bottom: 10px;
   }
 
   .section-header h2 {
     font-size: 1.8rem;
+  }
+
+  /* Contact */
+  .contact-box {
+    padding: 40px 20px;
+  }
+
+  .contact-box h2 {
+    font-size: 1.6rem;
+  }
+
+  .contact-links {
+    gap: 12px;
+  }
+
+  .contact-pill {
+    padding: 10px 18px;
+    font-size: 12px;
   }
 
   .footer-bottom {
@@ -1693,6 +1781,26 @@ body::before {
   .frame-corner {
     font-size: 16px;
   }
+
+  /* Improve touch targets */
+  .socials a {
+    width: 44px;
+    height: 44px;
+  }
+
+  .btn {
+    padding: 12px 24px;
+    font-size: 13px;
+  }
+
+  /* Typewriter */
+  .typewriter-container {
+    font-size: 1rem;
+  }
+
+  .greeting {
+    font-size: 15px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1701,19 +1809,78 @@ body::before {
   }
 
   .full-name {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
+    letter-spacing: 1.5px;
   }
 
   .section {
-    padding: 60px 5%;
+    padding: 60px 4%;
   }
 
   .compact-content h3 {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
 
   .hero {
-    padding: 100px 5% 40px;
+    padding: 100px 4% 40px;
+  }
+
+  .compact-visual {
+    height: 220px;
+  }
+
+  .section-header h2 {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+  }
+
+  .tag {
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+
+  .img-box {
+    width: 180px;
+    height: 180px;
+  }
+
+  .monogram-letter {
+    font-size: 2.5rem;
+  }
+
+  /* Book cover mobile fixes */
+  .book-monogram {
+    font-size: 3.5rem;
+  }
+
+  .book-title {
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+  }
+
+  .book-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .blob {
+    display: none;
+  }
+
+  .hero-watermark {
+    font-size: 200px;
+  }
+
+  .floating-code-symbol {
+    display: none;
+  }
+
+  /* Contact on small screens */
+  .contact-box::after {
+    inset: 5px;
+  }
+
+  .contact-box h2 {
+    font-size: 1.4rem;
   }
 }
 

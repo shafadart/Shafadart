@@ -3,6 +3,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import ScrollReveal from './ScrollReveal';
+import Image from 'next/image';
 import { getGallery } from '@/lib/galleryData';
 
 export default function Gallery() {
@@ -36,10 +37,15 @@ export default function Gallery() {
               }}
               whileHover={{ scale: 1.02 }}
             >
-              <img
+              <Image
                 src={img}
                 alt={`Nature ${i + 1}`}
+                width={600}
+                height={400}
+                quality={70}
                 loading="lazy"
+                sizes="(max-width: 480px) 100vw, (max-width: 900px) 50vw, 33vw"
+                style={{ width: '100%', height: 'auto', display: 'block' }}
                 onError={(e) => {
                   e.currentTarget.style.display = 'none';
                 }}

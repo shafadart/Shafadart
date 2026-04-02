@@ -1,6 +1,7 @@
 'use client';
 
 import ScrollReveal from './ScrollReveal';
+import Image from 'next/image';
 
 export default function About() {
   return (
@@ -13,7 +14,15 @@ export default function About() {
 
         <div className="about-content">
           <ScrollReveal direction="left" className="about-img">
-            <img src="/assets/shafa_dart.png" alt="Shafa Coding" />
+            <Image
+              src="/assets/shafa_dart.png"
+              alt="Shafa Coding"
+              width={500}
+              height={500}
+              quality={70}
+              loading="lazy"
+              style={{ width: '100%', height: 'auto', borderRadius: '12px', boxShadow: '0 20px 50px rgba(0, 0, 0, 0.4)', border: '2px solid var(--border-ornate)' }}
+            />
           </ScrollReveal>
 
           <ScrollReveal direction="right" className="about-text">
