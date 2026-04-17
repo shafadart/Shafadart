@@ -360,6 +360,143 @@ export default function AntiDopaminePage() {
       margin-top: 0;
     }
 
+    /* ===== DOWNLOAD CTA SECTION ===== */
+    .ad-download-cta {
+      padding: 100px 5%;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .ad-download-cta::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(124, 77, 255, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .ad-download-cta::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 250px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(124, 77, 255, 0.3), transparent);
+    }
+    .ad-app-icon-wrap {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 30px;
+    }
+    .ad-app-icon-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -15px;
+      border-radius: 34px;
+      background: radial-gradient(circle, rgba(124, 77, 255, 0.2) 0%, transparent 70%);
+      filter: blur(20px);
+      animation: ad-icon-glow 3s ease-in-out infinite;
+    }
+    @keyframes ad-icon-glow {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.08); }
+    }
+    .ad-app-icon {
+      width: 140px;
+      height: 140px;
+      border-radius: 28px;
+      object-fit: cover;
+      border: 3px solid rgba(124, 77, 255, 0.25);
+      box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.5),
+        0 0 30px rgba(124, 77, 255, 0.1);
+      position: relative;
+      z-index: 1;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .ad-app-icon:hover {
+      transform: scale(1.08) rotate(-3deg);
+      border-color: rgba(124, 77, 255, 0.5);
+      box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.6),
+        0 0 50px rgba(124, 77, 255, 0.2);
+    }
+    .ad-download-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+    .ad-download-desc {
+      font-size: 1.05rem;
+      color: #8878a0;
+      max-width: 480px;
+      margin: 0 auto 35px;
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
+    }
+    .ad-download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 48px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      font-family: 'Hind Siliguri', sans-serif;
+      border: none;
+      border-radius: 60px;
+      cursor: pointer;
+      text-decoration: none;
+      background: linear-gradient(135deg, #7c4dff 0%, #651fff 50%, #536dfe 100%);
+      color: #fff;
+      box-shadow:
+        0 10px 35px rgba(124, 77, 255, 0.4),
+        0 0 0 1px rgba(124, 77, 255, 0.2);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .ad-download-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(135deg, #9c7cff 0%, #7c4dff 50%, #536dfe 100%);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .ad-download-btn:hover::before {
+      opacity: 1;
+    }
+    .ad-download-btn:hover {
+      transform: translateY(-5px) scale(1.03);
+      box-shadow:
+        0 18px 50px rgba(124, 77, 255, 0.55),
+        0 0 0 1px rgba(124, 77, 255, 0.3);
+    }
+    .ad-download-btn i,
+    .ad-download-btn span {
+      position: relative;
+      z-index: 1;
+    }
+    .ad-version-tag {
+      margin-top: 18px;
+      font-size: 0.8rem;
+      color: #5a4a72;
+      position: relative;
+      z-index: 1;
+    }
+
     /* ===== FOOTER ===== */
     .ad-footer {
       text-align: center;
@@ -423,6 +560,15 @@ export default function AntiDopaminePage() {
       }
       .ad-legal-body {
         padding: 0 20px 24px;
+      }
+      .ad-app-icon {
+        width: 110px;
+        height: 110px;
+        border-radius: 24px;
+      }
+      .ad-download-btn {
+        padding: 16px 36px;
+        font-size: 1.05rem;
       }
     }
   `;
@@ -589,6 +735,33 @@ export default function AntiDopaminePage() {
               </p>
             </motion.div>
           )}
+        </motion.div>
+      </section>
+
+      {/* ===== DOWNLOAD CTA ===== */}
+      <section className="ad-download-cta">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.7 }}
+        >
+          <div className="ad-app-icon-wrap">
+            <img
+              src="/assets/dopamine_icon.PNG"
+              alt="Anti Dopamine App Icon"
+              className="ad-app-icon"
+            />
+          </div>
+          <h2 className="ad-download-title">আজই শুরু করুন আপনার ডিজিটাল ডিটক্স</h2>
+          <p className="ad-download-desc">
+            আপনার মস্তিষ্ককে ডোপামিন আসক্তি থেকে মুক্ত করুন। সম্পূর্ণ ফ্রি, সম্পূর্ণ অফলাইন।
+          </p>
+          <a href="/assets/Anti_Dopamine.apk" download className="ad-download-btn">
+            <i className="fa-brands fa-android"></i>
+            <span>অ্যাপটি ডাউনলোড করুন</span>
+          </a>
+          <p className="ad-version-tag">Android 8.0+ • APK সাইজ ~25 MB</p>
         </motion.div>
       </section>
 
