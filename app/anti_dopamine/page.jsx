@@ -634,7 +634,7 @@ export default function AntiDopaminePage() {
               সাধারণ কোনো &lsquo;স্ক্রিন টাইম&rsquo; অ্যাপ নয়। এটি একটি আন-বাইপাসেবল হার্ড-লক সিস্টেম, যা নির্দিষ্ট সময়ের জন্য আপনার ফোনকে সম্পূর্ণ লক করে দেয়।
             </motion.p>
             <motion.div className="ad-cta-row" variants={fadeUp} custom={2}>
-              <a href="/assets/Anti_dopamine_v1.0.0.apk" download className="ad-cta-btn ad-cta-primary">
+              <a href="/assets/Anti_Dopamine_v1.1.0.apk" download className="ad-cta-btn ad-cta-primary">
                 <i className="fa-brands fa-android"></i>
                 অ্যাপটি ডাউনলোড করুন
               </a>
@@ -757,7 +757,7 @@ export default function AntiDopaminePage() {
           <p className="ad-download-desc">
             আপনার মস্তিষ্ককে ডোপামিন আসক্তি থেকে মুক্ত করুন। সম্পূর্ণ ফ্রি, সম্পূর্ণ অফলাইন।
           </p>
-          <a href="/assets/Anti_dopamine_v1.0.0.apk" download className="ad-download-btn">
+          <a href="/assets/Anti_Dopamine_v1.1.0.apk" download className="ad-download-btn">
             <i className="fa-brands fa-android"></i>
             <span>অ্যাপটি ডাউনলোড করুন</span>
           </a>
